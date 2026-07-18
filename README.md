@@ -9,9 +9,7 @@ Please cite our paper when its online.
 - Fits a recurrent switching linear dynamical system (rSLDS) to event-aligned behavioral and calcium-related features.
 - Loads the harmonized behavioral table, filters the selected recording day, preprocesses model inputs, and fits one shared rSLDS across events.
 - Uses event-wise arcsinh normalization for calcium features (`ca_signal`, `ddff`), global scaling for continuous behavioral/spatial features, and keeps circular variables (`cos_angle`, `sin_angle`) on their original scale.
-- Handles invalid heading frames with a mask-aware initialization step, so undefined heading values do not dominate the latent initialization.
 - Exports posterior latent trajectories, most likely discrete states, state probabilities, fitted flow parameters, flow vectors, and model parameter summaries.
-- Also writes diagnostic files for feature scaling, masking, raw calcium distribution, state-conditioned feature summaries, variance diagnostics, ELBO curves, and latent-flow visualizations.
 - The output tables from this script are used as the main inputs for `rslds_analysis.R`.
 
 ### 2. rSLDS model analysis (`rslds_analysis.R`)
@@ -19,16 +17,14 @@ Please cite our paper when its online.
 - Reconstructs state-specific linear dynamics from the exported `A` matrices and bias terms, then projects latent trajectories into a shared PCA space for visualization.
 - Builds the 3D energy/slowness landscape and 2D PC1-PC2 flow-field plots, including representative event trajectories.
 - Computes fixed points, eigenvalue-based attractor diagnostics, line-attractor scores, geometry scores, and line-attractor overlays.
-- Runs phase-by-state enrichment analysis using Fisher exact tests to quantify whether behavioral phases are overrepresented in particular hidden states.
+- Runs phase-by-state enrichment analysis using Fisher's exact tests to quantify whether behavioral phases are overrepresented in particular hidden states.
 - Saves core outputs including interactive 3D HTML plots, static 2D PDF/SVG/PNG plots, attractor diagnostics, line-attractor scores, geometry scores, Fisher test tables, and cross-day attractor summaries.
-- Attractor and energy-landscape results should be interpreted as model-based diagnostics of fitted rSLDS dynamics, not as formal physical potentials or definitive proof of attractor dynamics.
 
 ### 3. GLM model analysis (`glm_analysis.R`)
 - Runs event-level GLM model selection for calcium signal prediction across predefined behavioral and spatial predictor subsets.
 - Uses pre-digging/non-drinking frames and fits Gaussian identity-link GLMs for `ca_signal` using predictors such as distance to water, speed, digging number, day indicators, and heading components.
 - Performs repeated event-level train/test splits, keeping all frames from the same event together to reduce leakage between training and held-out data.
 - Reports held-out test MSE, training deviance-based R2, AIC, coefficient stability across resamples, bootstrap-style coefficient intervals, sign consistency, and full-sample exploratory p-values.
-- Produces per-model metric and coefficient CSV files plus a model comparison summary table ranked primarily by held-out event-level prediction error.
 
 ## Notes
 - Run scripts from the project root directory unless otherwise specified in the script comments.
@@ -39,4 +35,4 @@ Please cite our paper when its online.
 Please refer to individual subfolders and scripts for detailed documentation and implementation details.
 
 ## Citation
-If you use this code in your research, please cite our paper: [Paper citation details]
+If you use this code in your research, please cite our paper in future.
